@@ -1,0 +1,18 @@
+import { Search, X } from 'lucide-react';
+
+const CandidateFilters = ({ filters, options, onChange, onClear }) => {
+  const field = 'h-10 min-w-0 rounded-xl border border-white/10 bg-slate-950/60 px-3 text-sm text-slate-300 outline-none focus:border-cyan-500/40';
+  return <section className="rounded-2xl border border-white/10 bg-slate-900/60 p-4" aria-label="Candidate filters">
+    <div className="flex flex-col gap-3 lg:flex-row"><label className="flex h-10 min-w-0 flex-1 items-center gap-2 rounded-xl border border-white/10 bg-slate-950/60 px-3"><Search size={16} className="text-slate-500" /><span className="sr-only">Search candidates</span><input value={filters.search} onChange={(event) => onChange('search', event.target.value)} placeholder="Search name, email, skill, college, job or location" className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none" /></label><select aria-label="Sort candidates" value={filters.sort} onChange={(event) => onChange('sort', event.target.value)} className={field}><option value="score-high">Highest match score</option><option value="score-low">Lowest match score</option><option value="newest">Newest application</option><option value="oldest">Oldest application</option><option value="experience-high">Most experience</option><option value="experience-low">Least experience</option><option value="name">Name A–Z</option></select></div>
+    <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+      <select aria-label="Applied job" value={filters.job} onChange={(event) => onChange('job', event.target.value)} className={field}><option value="">All jobs</option>{options.jobs.map((job) => <option key={job.id} value={job.id}>{job.title}</option>)}</select>
+      <select aria-label="Candidate status" value={filters.status} onChange={(event) => onChange('status', event.target.value)} className={field}><option value="">All statuses</option>{options.statuses.map((value) => <option key={value}>{value}</option>)}</select>
+      <input aria-label="Minimum match score" type="number" min="0" max="100" value={filters.score} onChange={(event) => onChange('score', event.target.value)} placeholder="Min score" className={field} />
+      <select aria-label="Experience range" value={filters.experience} onChange={(event) => onChange('experience', event.target.value)} className={field}><option value="">Any experience</option><option value="0-2">0–2 years</option><option value="3-5">3–5 years</option><option value="6-9">6–9 years</option><option value="10+">10+ years</option></select>
+      <select aria-label="Application source" value={filters.source} onChange={(event) => onChange('source', event.target.value)} className={field}><option value="">All sources</option>{options.sources.map((value) => <option key={value}>{value}</option>)}</select>
+      <select aria-label="Required skill" value={filters.skill} onChange={(event) => onChange('skill', event.target.value)} className={field}><option value="">All skills</option>{options.skills.map((value) => <option key={value}>{value}</option>)}</select>
+      <select aria-label="AI recommendation" value={filters.recommendation} onChange={(event) => onChange('recommendation', event.target.value)} className={field}><option value="">All recommendations</option>{['Highly Recommended', 'Recommended', 'Manual Review', 'Not Recommended'].map((value) => <option key={value}>{value}</option>)}</select>
+    </div><button type="button" onClick={onClear} className="mt-3 inline-flex items-center gap-1 text-xs text-slate-500 hover:text-white"><X size={13} />Clear filters</button>
+  </section>;
+};
+export default CandidateFilters;

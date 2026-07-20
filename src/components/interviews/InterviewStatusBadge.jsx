@@ -1,0 +1,3 @@
+const styles = { Scheduled: 'border-cyan-500/20 bg-cyan-500/10 text-cyan-300', Completed: 'border-emerald-500/20 bg-emerald-500/10 text-emerald-300', Cancelled: 'border-rose-500/20 bg-rose-500/10 text-rose-300', Rescheduled: 'border-amber-500/20 bg-amber-500/10 text-amber-300', 'No Show': 'border-slate-500/20 bg-slate-500/10 text-slate-400' };
+const InterviewStatusBadge = ({ status }) => { const value = status?.trim() || 'Unknown'; return <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${styles[value] || 'border-slate-500/20 bg-slate-500/10 text-slate-400'}`}>{value}</span>; };
+export default InterviewStatusBadge;

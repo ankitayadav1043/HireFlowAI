@@ -1,0 +1,4 @@
+import { ArrowLeft, House, SearchX } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+
+export default function NotFoundPage() { const navigate=useNavigate(); return <div className="grid min-h-[60vh] place-items-center text-center"><div><SearchX className="mx-auto text-slate-600" size={44}/><p className="mt-4 text-sm font-medium text-cyan-300">404</p><h1 className="mt-1 text-3xl font-semibold text-white">Page not found</h1><p className="mt-3 text-slate-400">The page may have moved, or the address may be incorrect.</p><div className="mt-6 flex justify-center gap-2"><button type="button" onClick={()=>navigate(-1)} className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2"><ArrowLeft size={16}/>Go Back</button><Link to="/" className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-4 py-2 font-semibold text-slate-950"><House size={16}/>Dashboard</Link></div></div></div>; }

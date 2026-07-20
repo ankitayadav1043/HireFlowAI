@@ -1,0 +1,11 @@
+import { useState } from 'react';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
+import { generateId } from '../../utils/generateId';
+
+const RecruiterNotes = ({ candidate, onUpdate }) => {
+  const [text, setText] = useState(''); const [editingId, setEditingId] = useState(null);
+  const notes = Array.isArray(candidate.notes) ? candidate.notes : [];
+  const save = () => { if (!text.trim()) return; const next = editingId ? notes.map((note) => note.id === editingId ? { ...note, text: text.trim(), updatedAt: new Date().toISOString() } : note) : [{ id: generateId('NOTE', notes.map((note) => note.id)), text: text.trim(), author: 'Ankit Kumar', timestamp: new Date().toISOString() }, ...notes]; onUpdate({ notes: next }); setText(''); setEditingId(null); };
+  return <section className="rounded-2xl border border-white/10 bg-slate-900/70 p-5"><h2 className="text-lg font-semibold text-white">Recruiter notes</h2><div className="mt-4 flex gap-2"><textarea value={text} onChange={(event) => setText(event.target.value)} placeholder="Add a private recruiting note…" className="min-h-20 flex-1 rounded-xl border border-white/10 bg-slate-950/70 p-3 text-sm text-white outline-none" /><button type="button" onClick={save} className="self-end rounded-xl bg-cyan-500 p-2.5 text-slate-950" aria-label={editingId ? 'Save note' : 'Add note'}>{editingId ? <Pencil size={17} /> : <Plus size={17} />}</button></div><div className="mt-4 space-y-3">{notes.map((note) => <article key={note.id} className="rounded-xl bg-white/[0.03] p-3"><p className="text-sm leading-6 text-slate-300">{note.text}</p><div className="mt-2 flex items-center justify-between text-[11px] text-slate-600"><span>{note.author || 'Recruiter'} · {note.timestamp ? new Date(note.timestamp).toLocaleString('en-IN') : 'Time unavailable'}</span><span className="flex gap-2"><button type="button" onClick={() => { setEditingId(note.id); setText(note.text); }} aria-label="Edit note"><Pencil size={13} /></button><button type="button" onClick={() => onUpdate({ notes: notes.filter((item) => item.id !== note.id) })} aria-label="Delete note"><Trash2 size={13} /></button></span></div></article>)}{!notes.length && <p className="py-5 text-center text-sm text-slate-600">No recruiter notes yet</p>}</div></section>;
+};
+export default RecruiterNotes;

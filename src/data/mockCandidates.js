@@ -1,0 +1,68 @@
+export const mockCandidates = [
+  {
+    id: 'CAN-001', name: 'Arjun Nair', email: 'arjun.nair@example.com', phone: '+91 98765 41001', location: 'Kochi, Kerala',
+    appliedJobId: 'JOB-001', appliedJob: 'Senior Frontend Engineer', skills: ['React', 'TypeScript', 'JavaScript', 'Next.js', 'Git'], experienceYears: 6,
+    education: 'B.Tech in Computer Science', college: 'NIT Calicut', graduationYear: 2020, certifications: ['AWS Certified Cloud Practitioner'],
+    projects: ['Enterprise design system', 'Real-time analytics dashboard'], matchScore: 92, skillScore: 95, experienceScore: 90, educationScore: 88, projectScore: 94,
+    matchedSkills: ['React', 'TypeScript', 'JavaScript', 'Git'], missingSkills: ['GraphQL'], strengths: ['Strong frontend architecture', 'Accessibility expertise'], weaknesses: ['Limited GraphQL exposure'],
+    aiRecommendation: 'Strongly recommend for technical interview; profile exceeds the role threshold.', status: 'Applied', source: 'LinkedIn', applicationDate: '2026-07-08', resumeFile: 'arjun-nair-resume.pdf',
+  },
+  {
+    id: 'CAN-002', name: 'Meera Kulkarni', email: 'meera.kulkarni@example.com', phone: '+91 98765 41002', location: 'Pune, Maharashtra',
+    appliedJobId: 'JOB-002', appliedJob: 'Product Manager - AI Platform', skills: ['Product Strategy', 'AI/ML', 'Roadmapping', 'Agile', 'SQL'], experienceYears: 7,
+    education: 'MBA in Technology Management', college: 'SPJIMR Mumbai', graduationYear: 2019, certifications: ['Certified Scrum Product Owner'],
+    projects: ['AI support copilot', 'SaaS onboarding redesign'], matchScore: 90, skillScore: 92, experienceScore: 91, educationScore: 90, projectScore: 88,
+    matchedSkills: ['Product Strategy', 'AI/ML', 'Roadmapping', 'Agile'], missingSkills: ['Recruitment Technology'], strengths: ['Outcome-driven roadmaps', 'Cross-functional leadership'], weaknesses: ['No HR-tech product experience'],
+    aiRecommendation: 'Advance to product case round with emphasis on recruitment domain learning.', status: 'Screening', source: 'Employee Referral', applicationDate: '2026-07-07', resumeFile: 'meera-kulkarni-resume.pdf',
+  },
+  {
+    id: 'CAN-003', name: 'Vikram Singh', email: 'vikram.singh@example.com', phone: '+91 98765 41003', location: 'Noida, Uttar Pradesh',
+    appliedJobId: 'JOB-003', appliedJob: 'Talent Acquisition Specialist', skills: ['Technical Recruiting', 'Sourcing', 'ATS', 'LinkedIn Recruiter'], experienceYears: 5,
+    education: 'PGDM in Human Resources', college: 'IMT Ghaziabad', graduationYear: 2021, certifications: ['LinkedIn Certified Professional Recruiter'],
+    projects: ['Engineering hiring sprint', 'Referral programme launch'], matchScore: 88, skillScore: 91, experienceScore: 89, educationScore: 86, projectScore: 85,
+    matchedSkills: ['Technical Recruiting', 'Sourcing', 'ATS'], missingSkills: ['HR Analytics'], strengths: ['Technology talent network', 'Structured stakeholder updates'], weaknesses: ['Basic analytics proficiency'],
+    aiRecommendation: 'Shortlist for recruiter panel; validate reporting and analytics capability.', status: 'Shortlisted', source: 'Naukri', applicationDate: '2026-07-05', resumeFile: 'vikram-singh-resume.pdf',
+  },
+  {
+    id: 'CAN-004', name: 'Sneha Reddy', email: 'sneha.reddy@example.com', phone: '+91 98765 41004', location: 'Hyderabad, Telangana',
+    appliedJobId: 'JOB-004', appliedJob: 'Data Analyst', skills: ['SQL', 'Python', 'Power BI', 'Statistics', 'BigQuery'], experienceYears: 3,
+    education: 'M.Sc. in Data Science', college: 'University of Hyderabad', graduationYear: 2023, certifications: ['Microsoft Power BI Data Analyst'],
+    projects: ['Workforce attrition model', 'Executive KPI dashboard'], matchScore: 94, skillScore: 96, experienceScore: 86, educationScore: 94, projectScore: 95,
+    matchedSkills: ['SQL', 'Python', 'Power BI', 'Statistics'], missingSkills: ['dbt'], strengths: ['Clear data storytelling', 'Strong statistical foundation'], weaknesses: ['Limited production dbt usage'],
+    aiRecommendation: 'High-potential candidate; proceed with analytics case interview.', status: 'Interview Scheduled', source: 'Company Careers', applicationDate: '2026-07-04', resumeFile: 'sneha-reddy-resume.pdf',
+  },
+  {
+    id: 'CAN-005', name: 'Rahul Banerjee', email: 'rahul.banerjee@example.com', phone: '+91 98765 41005', location: 'Kolkata, West Bengal',
+    appliedJobId: 'JOB-001', appliedJob: 'Senior Frontend Engineer', skills: ['React', 'JavaScript', 'REST APIs', 'Git', 'AWS'], experienceYears: 5,
+    education: 'B.E. in Information Technology', college: 'Jadavpur University', graduationYear: 2021, certifications: ['Meta Front-End Developer'],
+    projects: ['E-commerce storefront', 'Micro-frontend migration'], matchScore: 84, skillScore: 86, experienceScore: 86, educationScore: 84, projectScore: 82,
+    matchedSkills: ['React', 'JavaScript', 'REST APIs', 'Git'], missingSkills: ['TypeScript'], strengths: ['Performance optimisation', 'Practical micro-frontend experience'], weaknesses: ['TypeScript depth below requirement'],
+    aiRecommendation: 'Consider after validating TypeScript proficiency through a focused coding task.', status: 'Interview Completed', source: 'Instahyre', applicationDate: '2026-07-02', resumeFile: 'rahul-banerjee-resume.pdf',
+  },
+  {
+    id: 'CAN-006', name: 'Ishita Desai', email: 'ishita.desai@example.com', phone: '+91 98765 41006', location: 'Ahmedabad, Gujarat',
+    appliedJobId: 'JOB-002', appliedJob: 'Product Manager - AI Platform', skills: ['Product Strategy', 'Analytics', 'Roadmapping', 'B2B SaaS', 'Agile'], experienceYears: 8,
+    education: 'MBA', college: 'IIM Kozhikode', graduationYear: 2018, certifications: ['Pragmatic Product Management'],
+    projects: ['B2B workflow platform', 'Usage-based pricing launch'], matchScore: 89, skillScore: 87, experienceScore: 94, educationScore: 93, projectScore: 90,
+    matchedSkills: ['Product Strategy', 'Analytics', 'Roadmapping', 'Agile'], missingSkills: ['AI/ML'], strengths: ['Commercial product judgement', 'Enterprise SaaS expertise'], weaknesses: ['Limited hands-on AI product delivery'],
+    aiRecommendation: 'Select for final leadership round; probe AI product discovery approach.', status: 'Selected', source: 'Employee Referral', applicationDate: '2026-06-30', resumeFile: 'ishita-desai-resume.pdf',
+  },
+  {
+    id: 'CAN-007', name: 'Karan Malhotra', email: 'karan.malhotra@example.com', phone: '+91 98765 41007', location: 'New Delhi, Delhi',
+    appliedJobId: 'JOB-003', appliedJob: 'Talent Acquisition Specialist', skills: ['Sourcing', 'Employer Branding', 'Stakeholder Management'], experienceYears: 2,
+    education: 'BBA in Human Resources', college: 'Shaheed Sukhdev College of Business Studies', graduationYear: 2024, certifications: ['AIHR Talent Acquisition Certificate'],
+    projects: ['Campus hiring campaign', 'Employer brand content series'], matchScore: 68, skillScore: 66, experienceScore: 58, educationScore: 82, projectScore: 72,
+    matchedSkills: ['Sourcing', 'Stakeholder Management'], missingSkills: ['Technical Recruiting', 'ATS'], strengths: ['Employer branding creativity', 'Campus engagement'], weaknesses: ['Experience below requirement', 'Limited ATS exposure'],
+    aiRecommendation: 'Do not advance for this role; consider for a junior recruiter opening.', status: 'Rejected', source: 'Campus', applicationDate: '2026-06-28', resumeFile: 'karan-malhotra-resume.pdf',
+  },
+  {
+    id: 'CAN-008', name: 'Divya Krishnan', email: 'divya.krishnan@example.com', phone: '+91 98765 41008', location: 'Chennai, Tamil Nadu',
+    appliedJobId: 'JOB-004', appliedJob: 'Data Analyst', skills: ['SQL', 'Python', 'Power BI', 'Excel', 'People Analytics'], experienceYears: 4,
+    education: 'B.Tech in Data Science', college: 'VIT Vellore', graduationYear: 2022, certifications: ['Google Data Analytics Professional Certificate'],
+    projects: ['Recruitment funnel analytics', 'Compensation benchmarking dashboard'], matchScore: 91, skillScore: 93, experienceScore: 90, educationScore: 88, projectScore: 92,
+    matchedSkills: ['SQL', 'Python', 'Power BI', 'Excel'], missingSkills: ['dbt'], strengths: ['Relevant people analytics portfolio', 'Excellent dashboard design'], weaknesses: ['No dbt production experience'],
+    aiRecommendation: 'Excellent domain fit; recommend hire based on assessment and panel feedback.', status: 'Hired', source: 'LinkedIn', applicationDate: '2026-06-20', resumeFile: 'divya-krishnan-resume.pdf',
+  },
+];
+
+export default mockCandidates;
