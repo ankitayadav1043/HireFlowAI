@@ -124,7 +124,7 @@ backend/
 
 ## Authentication API
 
-The backend creates only the `users` table during FastAPI startup. No other tables or models are created. In a later production phase, replace automatic table creation with versioned database migrations.
+The backend creates only the explicitly registered `users` and `jobs` tables during FastAPI startup. In a later production phase, replace automatic table creation with versioned database migrations.
 
 ### Register a user
 
@@ -173,6 +173,33 @@ Authorization: Bearer <token>
 ```
 
 Access tokens expire after `ACCESS_TOKEN_EXPIRE_MINUTES`. Set a strong `SECRET_KEY` in `.env` before using authentication outside local development.
+## Jobs API
+
+Every Jobs endpoint requires an `Authorization: Bearer <token>` header. Authenticated administrators and recruiters can create and manage jobs.
+
+- `POST /jobs` creates a job and returns HTTP `201`.
+- `GET /jobs` returns paginated jobs sorted newest first.
+- `GET /jobs/{job_id}` returns one job or HTTP `404`.
+- `PUT /jobs/{job_id}` updates supplied fields.
+- `DELETE /jobs/{job_id}` deletes a job and returns HTTP `204`.
+
+List query parameters:
+
+- `page` (default `1`)
+- `page_size` (default `20`, maximum `100`)
+- `search` for a case-insensitive partial title match
+- `department`
+- `status` (`Open`, `Closed`, or `Draft`)
+- `location`
+
+Example:
+
+```http
+GET /jobs?page=1&page_size=20&search=engineer&department=Engineering&status=Open&location=Bengaluru
+Authorization: Bearer <token>
+```
+
+Salaries are stored as fixed-precision decimals, required skills use PostgreSQL arrays, and the database validates status and salary ranges.
 ## Production notes
 
 - Use a unique, strong `SECRET_KEY` supplied through the deployment environment.
