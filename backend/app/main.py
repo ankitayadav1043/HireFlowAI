@@ -9,10 +9,12 @@ from fastapi.responses import JSONResponse
 
 from app.config import settings
 from app.database import Base, engine
+from app.models.candidate import Candidate
 from app.models.job import Job
 from app.models.user import User
 from app.routers.auth import router as auth_router
 from app.routers.jobs import router as jobs_router
+from app.routers.candidates import router as candidates_router
 from app.utils.database_health import is_database_connected
 
 
@@ -22,7 +24,7 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 
     Base.metadata.create_all(
         bind=engine,
-        tables=[User.__table__, Job.__table__],
+        tables=[User.__table__, Job.__table__, Candidate.__table__],
         checkfirst=True,
     )
     yield
@@ -45,6 +47,7 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(jobs_router)
+app.include_router(candidates_router)
 
 
 @app.get("/", tags=["System"])

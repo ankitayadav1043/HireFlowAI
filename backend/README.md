@@ -124,7 +124,7 @@ backend/
 
 ## Authentication API
 
-The backend creates only the explicitly registered `users` and `jobs` tables during FastAPI startup. In a later production phase, replace automatic table creation with versioned database migrations.
+The backend creates only the explicitly registered `users`, `jobs`, and `candidates` tables during FastAPI startup. In a later production phase, replace automatic table creation with versioned database migrations.
 
 ### Register a user
 
@@ -200,6 +200,24 @@ Authorization: Bearer <token>
 ```
 
 Salaries are stored as fixed-precision decimals, required skills use PostgreSQL arrays, and the database validates status and salary ranges.
+## Candidates API
+
+Every Candidates endpoint requires `Authorization: Bearer <token>`.
+
+- `POST /candidates` creates a candidate for an existing job and returns HTTP `201`.
+- `GET /candidates` returns paginated candidates sorted newest first.
+- `GET /candidates/{candidate_id}` returns one candidate or HTTP `404`.
+- `PUT /candidates/{candidate_id}` updates supplied fields and revalidates a changed job.
+- `DELETE /candidates/{candidate_id}` returns HTTP `204`.
+
+List query parameters include `page`, `page_size` (maximum `100`), `search` (name or email), `status`, `applied_job_id`, and `location`.
+
+```http
+GET /candidates?page=1&page_size=20&search=priya&status=Screening&applied_job_id=<job-uuid>&location=Pune
+Authorization: Bearer <token>
+```
+
+Candidate emails are normalized to lowercase, text is trimmed, and duplicate skills are removed case-insensitively. Candidate writes referencing an unknown job return HTTP `404`.
 ## Production notes
 
 - Use a unique, strong `SECRET_KEY` supplied through the deployment environment.
