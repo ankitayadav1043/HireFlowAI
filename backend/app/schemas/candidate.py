@@ -39,14 +39,11 @@ class CandidateCreate(BaseModel):
     education: str | None = Field(default=None, max_length=300)
     linkedin_url: HttpUrl | None = None
     portfolio_url: HttpUrl | None = None
-    resume_filename: str | None = Field(default=None, max_length=255)
-    resume_path: str | None = Field(default=None, max_length=1000)
     status: CandidateStatus = "New"
     applied_job_id: uuid.UUID
 
     @field_validator(
         "full_name", "phone", "location", "current_job_title", "education",
-        "resume_filename", "resume_path",
     )
     @classmethod
     def clean_text(cls, value: str | None) -> str | None:
@@ -79,14 +76,11 @@ class CandidateUpdate(BaseModel):
     education: str | None = Field(default=None, max_length=300)
     linkedin_url: HttpUrl | None = None
     portfolio_url: HttpUrl | None = None
-    resume_filename: str | None = Field(default=None, max_length=255)
-    resume_path: str | None = Field(default=None, max_length=1000)
     status: CandidateStatus | None = None
     applied_job_id: uuid.UUID | None = None
 
     @field_validator(
         "full_name", "phone", "location", "current_job_title", "education",
-        "resume_filename", "resume_path",
     )
     @classmethod
     def clean_optional_text(cls, value: str | None) -> str | None:

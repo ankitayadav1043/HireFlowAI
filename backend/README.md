@@ -218,6 +218,21 @@ Authorization: Bearer <token>
 ```
 
 Candidate emails are normalized to lowercase, text is trimmed, and duplicate skills are removed case-insensitively. Candidate writes referencing an unknown job return HTTP `404`.
+## Candidate Resume API
+
+Resume endpoints require a bearer token and an existing candidate.
+
+- `POST /candidates/{candidate_id}/resume` uploads or safely replaces a resume.
+- `GET /candidates/{candidate_id}/resume` downloads the stored file.
+- `DELETE /candidates/{candidate_id}/resume` deletes the file, clears metadata, and returns HTTP `204`.
+
+The multipart field is named `file`. Only content-validated PDF and DOCX files up to 5 MB are accepted.
+
+```bash
+curl -X POST "http://127.0.0.1:8000/candidates/<candidate-id>/resume" -H "Authorization: Bearer <token>" -F "file=@resume.pdf;type=application/pdf"
+```
+
+Uploads receive UUID-only filenames and are stored under `backend/uploads/resumes/`. The upload directory is ignored by Git. Candidate create/update payloads cannot set `resume_path` or `resume_filename` directly.
 ## Production notes
 
 - Use a unique, strong `SECRET_KEY` supplied through the deployment environment.

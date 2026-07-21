@@ -14,14 +14,17 @@ from app.models.job import Job
 from app.models.user import User
 from app.routers.auth import router as auth_router
 from app.routers.jobs import router as jobs_router
+from app.routers.resumes import router as resumes_router
 from app.routers.candidates import router as candidates_router
 from app.utils.database_health import is_database_connected
+from app.services.resume_service import ensure_resume_directory
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     """Create only the explicitly supported application tables."""
 
+    ensure_resume_directory()
     Base.metadata.create_all(
         bind=engine,
         tables=[User.__table__, Job.__table__, Candidate.__table__],
@@ -48,6 +51,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(jobs_router)
 app.include_router(candidates_router)
+app.include_router(resumes_router)
 
 
 @app.get("/", tags=["System"])
