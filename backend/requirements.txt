@@ -1,6 +1,3 @@
-cd backend
-.\.venv\Scripts\Activate.ps1
-python test_database.py
 fastapi
 uvicorn[standard]
 sqlalchemy
@@ -11,3 +8,4 @@ python-multipart
 passlib[bcrypt]
 python-jose[cryptography]
 email-validator
+pypdf

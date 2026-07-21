@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import ARRAY, CheckConstraint, DateTime, ForeignKey, Numeric, String, Uuid, func
+from sqlalchemy import ARRAY, CheckConstraint, DateTime, ForeignKey, Numeric, String, Text, Uuid, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database import Base
@@ -40,6 +40,16 @@ class Candidate(Base):
     portfolio_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
     resume_filename: Mapped[str | None] = mapped_column(String(255), nullable=True)
     resume_path: Mapped[str | None] = mapped_column(String(1000), nullable=True)
+    resume_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    parsed_name: Mapped[str | None] = mapped_column(String(150), nullable=True)
+    parsed_email: Mapped[str | None] = mapped_column(String(320), nullable=True)
+    parsed_phone: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    parsed_skills: Mapped[list[str] | None] = mapped_column(ARRAY(String(200)), nullable=True)
+    parsed_education: Mapped[list[str] | None] = mapped_column(ARRAY(Text), nullable=True)
+    parsed_experience: Mapped[list[str] | None] = mapped_column(ARRAY(Text), nullable=True)
+    parsed_projects: Mapped[list[str] | None] = mapped_column(ARRAY(Text), nullable=True)
+    parsed_certifications: Mapped[list[str] | None] = mapped_column(ARRAY(Text), nullable=True)
+    resume_parsed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     status: Mapped[str] = mapped_column(String(30), default="New", index=True, nullable=False)
     applied_job_id: Mapped[uuid.UUID] = mapped_column(
         Uuid(as_uuid=True),

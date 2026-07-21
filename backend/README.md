@@ -107,19 +107,19 @@ The backend permits requests from `http://localhost:5173` by default. A differen
 
 ```text
 backend/
-├── app/
-│   ├── models/
-│   ├── routers/
-│   ├── schemas/
-│   ├── services/
-│   ├── utils/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── database.py
-│   └── main.py
-├── .env.example
-├── README.md
-└── requirements.txt
+|-- app/
+|   |-- models/
+|   |-- routers/
+|   |-- schemas/
+|   |-- services/
+|   |-- utils/
+|   |-- __init__.py
+|   |-- config.py
+|   |-- database.py
+|   `-- main.py
+|-- .env.example
+|-- README.md
+`-- requirements.txt
 ```
 
 ## Authentication API
@@ -233,6 +233,22 @@ curl -X POST "http://127.0.0.1:8000/candidates/<candidate-id>/resume" -H "Author
 ```
 
 Uploads receive UUID-only filenames and are stored under `backend/uploads/resumes/`. The upload directory is ignored by Git. Candidate create/update payloads cannot set `resume_path` or `resume_filename` directly.
+## Resume Parsing API
+
+Install the declared PDF parser inside the activated backend virtual environment:
+
+```powershell
+python -m pip install pypdf
+```
+
+DOCX parsing uses Python's ZIP/XML standard library and does not execute macros or embedded objects.
+
+- `POST /candidates/{candidate_id}/resume/parse` extracts, detects, and persists resume data.
+- `GET /candidates/{candidate_id}/resume/parsed-data` returns the last persisted parse result.
+
+Both endpoints require a bearer token. Parsed fields are stored separately from recruiter-entered candidate fields. Uploading a replacement resume clears stale parsed data until the replacement is parsed.
+
+The parser conservatively detects a name near the top of the document, plus email, phone, common technical skills, education, experience, projects, and certifications. Text is whitespace-normalized and capped at 200,000 characters. PDF processing is limited to 100 pages, and expanded DOCX content is limited to 20 MB.
 ## Production notes
 
 - Use a unique, strong `SECRET_KEY` supplied through the deployment environment.

@@ -62,6 +62,16 @@ async def upload_candidate_resume(
     previous_path = candidate.resume_path
     candidate.resume_filename = stored.filename
     candidate.resume_path = stored.relative_path
+    candidate.resume_text = None
+    candidate.parsed_name = None
+    candidate.parsed_email = None
+    candidate.parsed_phone = None
+    candidate.parsed_skills = None
+    candidate.parsed_education = None
+    candidate.parsed_experience = None
+    candidate.parsed_projects = None
+    candidate.parsed_certifications = None
+    candidate.resume_parsed_at = None
     try:
         database.commit()
         database.refresh(candidate)
@@ -148,6 +158,16 @@ def delete_candidate_resume(
 
     candidate.resume_filename = None
     candidate.resume_path = None
+    candidate.resume_text = None
+    candidate.parsed_name = None
+    candidate.parsed_email = None
+    candidate.parsed_phone = None
+    candidate.parsed_skills = None
+    candidate.parsed_education = None
+    candidate.parsed_experience = None
+    candidate.parsed_projects = None
+    candidate.parsed_certifications = None
+    candidate.resume_parsed_at = None
     try:
         database.commit()
     except SQLAlchemyError:
